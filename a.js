@@ -1,8 +1,7 @@
 //  简单的用户与订单工具函数（用于测试自动代码评审）
 
 function getUser(users, id) {
-  // 遍历查找用户
-  if (!users) {
+  if (!Array.isArray(users)) {
     return undefined;
   }
   for (let i = 0; i < users.length; i++) {
@@ -11,6 +10,7 @@ function getUser(users, id) {
       return user;
     }
   }
+  return undefined;
 }
 
 function calcDiscount(price, pct) {
