@@ -18,7 +18,10 @@ function calcDiscount(price, pct) {
 }
 
 function buildQuery(name) {
-  return "SELECT * FROM users WHERE name = '" + name + "'";
+  return {
+    text: "SELECT * FROM users WHERE name = $1",
+    values: [name],
+  };
 }
 
 module.exports = { getUser, calcDiscount, buildQuery };
