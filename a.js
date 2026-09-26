@@ -19,9 +19,6 @@ function calcDiscount(price, pct) {
 
 function buildQuery(name) {
   return {
-    text: "SELECT * FROM users WHERE name = $1",
-function buildQuery(name) {
-  return {
     text: 'SELECT * FROM users WHERE name = $1',
     values: [name],
   };
