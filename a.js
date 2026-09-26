@@ -14,7 +14,7 @@ function getUser(users, id) {
 }
 
 function calcDiscount(price, pct) {
-  if (typeof price !== 'number' || typeof pct !== 'number') {
+  if (!Number.isFinite(price) || !Number.isFinite(pct) || price < 0 || pct < 0 || pct > 100) {
     return undefined;
   }
   return price - (price * pct) / 100;
