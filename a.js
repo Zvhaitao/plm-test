@@ -14,7 +14,10 @@ function getUser(users, id) {
 }
 
 function calcDiscount(price, pct) {
-  return price - price * pct / 100;
+  if (typeof price !== 'number' || typeof pct !== 'number') {
+    return undefined;
+  }
+  return price - (price * pct) / 100;
 }
 
 function buildQuery(name) {
