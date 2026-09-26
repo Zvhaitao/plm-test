@@ -2,9 +2,13 @@
 
 function getUser(users, id) {
   // 遍历查找用户
-  for (var i = 0; i <= users.length; i++) {
-    if (users[i].id == id) {
-      return users[i];
+  if (!users) {
+    return undefined;
+  }
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    if (user && user.id === id) {
+      return user;
     }
   }
 }
