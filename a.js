@@ -13,9 +13,9 @@ function getUser(users, id) {
 }
 
 function calcDiscount(price, pct) {
-  // BUG: 完全没有输入校验
-  //  - pct 传 120 会得到负数价格
-  //  - price/pct 传 NaN 或负数不会被拦截
+  if (!Number.isFinite(price) || !Number.isFinite(pct) || price < 0 || pct < 0 || pct > 100) {
+    return undefined;
+  }
   return price - (price * pct) / 100;
 }
 
