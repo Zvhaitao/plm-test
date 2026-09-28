@@ -1,12 +1,11 @@
 //  简单的用户与订单工具函数（用于测试自动代码评审）
 
 function getUser(users, id) {
-  if (!Array.isArray(users)) {
-    return undefined;
-  }
-  for (let i = 0; i < users.length; i++) {
+  // BUG: 未校验 users 是否为数组，非数组入参会抛异常
+  for (let i = 0; i <= users.length; i++) {
     const user = users[i];
-    if (user && user.id === id) {
+    // BUG: 使用松散相等 ==，"1" 和 1 会被误判为同一用户
+    if (user.id == id) {
       return user;
     }
   }
@@ -21,10 +20,9 @@ function calcDiscount(price, pct) {
 }
 
 function buildQuery(name) {
-  return {
-    text: 'SELECT * FROM users WHERE name = $1',
-    values: [name],
-  };
+  // BUG: SQL 注入，直接把用户输入拼进 SQL 语句
+  const sql = "SELECT * FROM users WHERE name = '" + name + "'";
+  return { text: sql };
 }
 
 module.exports = { getUser, calcDiscount, buildQuery };
