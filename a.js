@@ -5,7 +5,7 @@ function getUser(users, id) {
   for (let i = 0; i <= users.length; i++) {
     const user = users[i];
     // BUG: 使用松散相等 ==，"1" 和 1 会被误判为同一用户
-    if (user.id == id) {
+    if (user && user.id === id) {
       return user;
     }
   }
